@@ -13,6 +13,9 @@ app = Flask(
 def index():
     return render_template("index.html")
 
+@app.route('/page')
+def page():
+    return render_template("page.html")
 # # 建立路徑"/getSum"的回應方式
 # # Query String 提供彈性 : /getSum?max=最大數字&min=最小數字
 # @app.route('/getSum' )
