@@ -1,4 +1,5 @@
-from flask import Flask, request
+from flask import Flask, request, redirect, url_for
+import json
 # 建立 Flask 物件
 app = Flask(
     __name__,
@@ -21,6 +22,9 @@ def getSum(): # min+(min+1)+(min+2)+...+max
 # 建立路徑"/"的回應方式
 @app.route('/')
 def index(): # 回應函式
+    # return redirect("/data") # 重新導向到 /data 路徑
+
+
     # print("請求方法", request.method) # 取得請求方法(GET/POST/PUT/DELETE)
     # print("請求網址", request.url) # 取得請求網址
     # print("網址路徑", request.path) # 取得網址路徑
@@ -32,12 +36,26 @@ def index(): # 回應函式
     # print("瀏覽器版本", request.user_agent.version)
     # print("引薦網址", request.referrer) # 取得引薦網址
 
+
     language = request.headers.get("accept-language")
     print("語言", language)
     if language.startswith("zh"):
-        return '你好, 世界!'
+        return redirect("/zh")
     else:
-        return 'Hello, World!' # 回傳網站首頁內容
+        return redirect("/en")
+    
+    # 回傳網站首頁內容
+        
+# 建立路徑"/zh"的回應方式
+@app.route('/zh')
+def zh():
+    return '歡迎來到網站'
+
+# 建立路徑"/en"的回應方式
+@app.route('/en')
+def en():
+    return 'Welcome to the website'
+
 
 # 建立路徑"/data"的回應方式
 @app.route('/data')
