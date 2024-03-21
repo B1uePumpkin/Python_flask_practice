@@ -16,11 +16,16 @@ def index(): # 回應函式
     # print("主機名稱", request.host) # 取得主機名稱
     # print("通訊協定", request.scheme) # 取得通訊協定
     # print("瀏覽器作業系統", request.user_agent.platform) # 取得瀏覽器作業系統
-    print("語言", request.headers.get("accept-language")) # 取得語言
+    # print("語言", request.headers.get("accept-language")) # 取得語言
     # print("瀏覽器", request.user_agent.browser)
     # print("瀏覽器版本", request.user_agent.version)
     # print("引薦網址", request.referrer) # 取得引薦網址
-    return 'Hello, World!' # 回傳網站首頁內容
+
+    language = request.headers.get("accept-language")
+    if language.startswith("zh"):
+        return '你好, 世界!'
+    else:
+        return 'Hello, World!' # 回傳網站首頁內容
 
 # 建立路徑"/data"的回應方式
 @app.route('/data')
