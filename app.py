@@ -44,7 +44,7 @@ def index(): # 回應函式
     # else:
     #     return redirect("/en")
     
-    return render_template("index")
+    return render_template("index", name="Flask")
     # 回傳網站首頁內容
         
 # 建立路徑"/zh"的回應方式
