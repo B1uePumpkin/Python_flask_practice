@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, url_for
+from flask import Flask, request, redirect, url_for, render_template
 import json
 # 建立 Flask 物件
 app = Flask(
@@ -37,13 +37,14 @@ def index(): # 回應函式
     # print("引薦網址", request.referrer) # 取得引薦網址
 
 
-    language = request.headers.get("accept-language")
-    print("語言", language)
-    if language.startswith("zh"):
-        return redirect("/zh")
-    else:
-        return redirect("/en")
+    # language = request.headers.get("accept-language")
+    # print("語言", language)
+    # if language.startswith("zh"):
+    #     return redirect("/zh")
+    # else:
+    #     return redirect("/en")
     
+    return render_template("index")
     # 回傳網站首頁內容
         
 # 建立路徑"/zh"的回應方式
