@@ -5,7 +5,18 @@ app = Flask(
     static_folder="public", # 靜態檔案資料夾
     static_url_path="/" # 靜態檔案網址路徑
 )
-# 所ˇ有在 public 資料夾內的檔案，都可以透過 / 網址路徑存取
+# 所有在 public 資料夾內的檔案，都可以透過 / 網址路徑存取
+
+# 建立路徑"/getSum"的回應方式
+# Query String 提供彈性 : /getSum?max=最大數字&min=最小數字
+@app.route('/getSum' )
+def getSum(): # min+(min+1)+(min+2)+...+max
+    min = int(request.args.get("min" , 1))
+    max = int(request.args.get("max" , 100))
+    result = 0
+    for n in range(min, max+1):
+        result += n
+    return "結果"+str(result)
 
 # 建立路徑"/"的回應方式
 @app.route('/')
@@ -22,6 +33,7 @@ def index(): # 回應函式
     # print("引薦網址", request.referrer) # 取得引薦網址
 
     language = request.headers.get("accept-language")
+    print("語言", language)
     if language.startswith("zh"):
         return '你好, 世界!'
     else:
