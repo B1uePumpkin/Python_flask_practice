@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, url_for, render_template
+from flask import Flask, request, redirect, url_for, render_template, session
 import json
 # 建立 Flask 物件
 app = Flask(
@@ -8,6 +8,9 @@ app = Flask(
 )
 # 所有在 public 資料夾內的檔案，都可以透過 / 網址路徑存取
 
+# 設定secret_key
+app.secret_key = "00000000"
+
 # 建立路徑"/"的回應方式
 @app.route('/')
 def index():
@@ -16,6 +19,34 @@ def index():
 @app.route('/page')
 def page():
     return render_template("page.html")
+
+@app.route("/calculate", methods=["POST"])
+def calculate():
+    # maxNum = int(request.args.get("max" ,""))
+    maxNum = int(request.form.get("max" ,""))
+    result = 0
+    for n in range(1, maxNum+1):
+        result += n
+    return render_template("result.html", data =result)
+
+
+@app.route('/show')
+def show():
+    name = request.args.get("n", "")
+    return "Hello, " + name
+
+@app.route('/hello')
+def hello():
+    name = request.args.get("name", "")
+    session["name"] = name
+    return "Hello, " + name
+
+@app.route('/talk')
+def talk():
+    name = session.get("name", "")
+    return "Let's talk, " + name
+
+
 # # 建立路徑"/getSum"的回應方式
 # # Query String 提供彈性 : /getSum?max=最大數字&min=最小數字
 # @app.route('/getSum' )

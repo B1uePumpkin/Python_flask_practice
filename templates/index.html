@@ -6,6 +6,18 @@
     </head>
     <body>
         <h3>Index</h3>
-        <a href="page">About</a>
+        <form action = "/calculate", method="POST">
+            數字 :<input type="text" name="max" />
+            <button>點擊計算</button>
+        </form>
+        <hr/>
+        <form action="/show">
+            名字：<input type="text" name="n" />
+            <button>點擊送出表單</button>
+        </form>
+        <hr/>
+        <a href="/data">Data page</a>
+        <br/>
+        <img src="logo.jpg" />
     </body>
 </html>
