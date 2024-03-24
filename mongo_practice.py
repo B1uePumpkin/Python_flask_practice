@@ -39,10 +39,10 @@ collection = db.users # 選擇操作users集合
 # 更新資料
 # result = collection.update_one(
 #     {
-#         'name': 'Kevin' 
+#         'name': 'Tom' 
 #     },{
 #         '$set': {
-#             'age': 25        
+#             'level': 3
 #             }
 #         }
 #     )
@@ -74,3 +74,17 @@ collection = db.users # 選擇操作users集合
 #     'level': 3
 # })
 # print("刪除成功"+str(result.deleted_count))
+
+
+# 篩選資料
+
+results = collection.find(
+    {
+
+    }).sort(
+        'level', pymongo.ASCENDING
+        )
+ 
+for result in results:
+    print(result["name"])
+    print(result["level"])
