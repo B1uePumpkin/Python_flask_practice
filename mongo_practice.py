@@ -49,15 +49,28 @@ collection = db.users # 選擇操作users集合
 
 
 # 更新多筆資料
-result = collection.update_many(
-    {
-        'level': 3
-    },{
-        '$set': {
-            'level': 3
-            }
-        }
-    )
+# result = collection.update_many(
+#     {
+#         'level': 3
+#     },{
+#         '$set': {
+#             'level': 3
+#             }
+#         }
+#     )
 
-print("符合查詢"+str(result.matched_count))
-print("更新成功"+str(result.modified_count))
+# print("符合查詢"+str(result.matched_count))
+# print("更新成功"+str(result.modified_count))
+
+
+# 刪除資料
+# result = collection.delete_one({
+#     'level': 3
+# })
+# print("刪除成功"+str(result.deleted_count))
+
+# 刪除多筆資料
+# result = collection.delete_many({
+#     'level': 3
+# })
+# print("刪除成功"+str(result.deleted_count))
