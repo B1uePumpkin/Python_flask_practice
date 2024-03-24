@@ -21,5 +21,12 @@ collection = db.users # 選擇操作users集合
 # print("新增成功"+str(result.inserted_ids))
 
 # 查詢資料
-result = collection.find_one(ObjectId("65ffbe51e10ff6aa7dcab083"))
-print(result)
+# result = collection.find_one(ObjectId("65ffbe51e10ff6aa7dcab083"))
+# print(result)
+# print(result["name"])
+# print(result["age"])
+
+# 一次取得多筆資料
+results = collection.find()
+for result in results:
+    print(result["name"])
