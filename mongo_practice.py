@@ -1,0 +1,13 @@
+# 載入pymongo套件
+import pymongo
+# 連線到MongoDB
+
+client = pymongo.MongoClient("mongodb+srv://root:Password@mycluster.b0llbe5.mongodb.net/?retryWrites=true&w=majority&appName=MyCluster")
+
+# 把資料放進資料庫
+db = client.test # 選擇使用test資料庫
+collection = db.users # 選擇操作users集合
+# 新增一筆資料
+collection.insert_one({'name': 'Kevin',
+                        'age': 20})
+print("新增成功")
