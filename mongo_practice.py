@@ -15,9 +15,13 @@ collection = db.users # 選擇操作users集合
 
 # 新增多筆資料
 # result = collection.insert_many([{'name': 'David',
-#                         'age': 30},
+#                         'level': 1},
 #                         {'name': 'Tom',
-#                         'age': 25}])
+#                         'level': 1},
+#                         {'name': 'Mary',
+#                          'level': 1
+#                          }])
+
 # print("新增成功"+str(result.inserted_ids))
 
 # 查詢資料
@@ -33,7 +37,27 @@ collection = db.users # 選擇操作users集合
 
 
 # 更新資料
-result = collection.update_one({'name': 'Kevin'},
-                                {'$set': {'age': 25}})
+# result = collection.update_one(
+#     {
+#         'name': 'Kevin' 
+#     },{
+#         '$set': {
+#             'age': 25        
+#             }
+#         }
+#     )
+
+
+# 更新多筆資料
+result = collection.update_many(
+    {
+        'level': 3
+    },{
+        '$set': {
+            'level': 3
+            }
+        }
+    )
+
 print("符合查詢"+str(result.matched_count))
 print("更新成功"+str(result.modified_count))
