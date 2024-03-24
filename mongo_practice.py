@@ -8,6 +8,6 @@ client = pymongo.MongoClient("mongodb+srv://root:Password@mycluster.b0llbe5.mong
 db = client.test # 選擇使用test資料庫
 collection = db.users # 選擇操作users集合
 # 新增一筆資料
-collection.insert_one({'name': 'Kevin',
+result = collection.insert_one({'name': 'Kevin',
                         'age': 20})
-print("新增成功")
+print("新增成功"+str(result.inserted_id))
