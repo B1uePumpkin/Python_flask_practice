@@ -27,6 +27,13 @@ collection = db.users # 選擇操作users集合
 # print(result["age"])
 
 # 一次取得多筆資料
-results = collection.find()
-for result in results:
-    print(result["name"])
+# results = collection.find()
+# for result in results:
+#     print(result["name"])
+
+
+# 更新資料
+result = collection.update_one({'name': 'Kevin'},
+                                {'$set': {'age': 25}})
+print("符合查詢"+str(result.matched_count))
+print("更新成功"+str(result.modified_count))
